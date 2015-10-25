@@ -8,6 +8,7 @@
     "clean": "rimraf build/ && mkdirp build/",
     "build:css": "mkdirp build/css && cpx src/css/* build/css && npm run build:css_vendor",
     "build:css_vendor": "mkdirp build/css/lib && cpx \"node_modules/reveal.js/css/**/*\" build/css/lib/",
+	"build:scss": "mkdirp build/css && node-sass src/css/main.scss --output build/css/",
     "build:data": "mkdirp build/data && cpx -v \"src/data/**/*\" build/data",
     "build:html": "jade src/index.jade -o build/",
     "build:js": "mkdirp build/js && browserify src/js/main.js > build/js/bundle.js",
@@ -38,6 +39,7 @@
     "cpx": "^1.2.1",
     "jade": "^1.11.0",
     "mkdirp": "^0.5.1",
+    "node-sass": "^3.4.0",
     "reveal.js": "^3.1.0",
     "rimraf": "^2.4.3",
     "watch": "^0.16.0"
