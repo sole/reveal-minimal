@@ -1,0 +1,45 @@
+{
+  "name": "reveal-minimal",
+  "version": "1.0.0",
+  "description": "A minimal setup for using Reveal.js with npm, Browserify, Jade, etc",
+  "main": "src/js/main.js",
+  "scripts": {
+    "build": "npm run clean && npm run build:html && npm run build:data && npm run build:css && npm run build:js",
+    "clean": "rimraf build/ && mkdirp build/",
+    "build:css": "mkdirp build/css && cpx src/css/* build/css && npm run build:css_vendor",
+    "build:css_vendor": "mkdirp build/css/lib && cpx \"node_modules/reveal.js/css/**/*\" build/css/lib/",
+    "build:data": "mkdirp build/data && cpx -v \"src/data/**/*\" build/data",
+    "build:html": "jade src/index.jade -o build/",
+    "build:js": "mkdirp build/js && browserify src/js/main.js > build/js/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build:src && npm run watch",
+    "watch": "watch \"npm run build\" src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sole/reveal-minimal.git"
+  },
+  "keywords": [
+    "reveal",
+    "presentation",
+    "npm",
+    "jade",
+    "slides"
+  ],
+  "author": "sole",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sole/reveal-minimal/issues"
+  },
+  "homepage": "https://github.com/sole/reveal-minimal#readme",
+  "dependencies": {
+    "analytics": "git+https://github.com/sole/analytics.git",
+    "browserify": "^11.2.0",
+    "cpx": "^1.2.1",
+    "jade": "^1.11.0",
+    "mkdirp": "^0.5.1",
+    "reveal.js": "^3.1.0",
+    "rimraf": "^2.4.3",
+    "watch": "^0.16.0"
+  }
+}
